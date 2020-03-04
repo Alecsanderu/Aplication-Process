@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="myButton">
+    <a href="{{ url_for('mentor_names') }}" class = "querry">Mentor with name "Laszlo"</a>
+    </div>
+    <div class="myButton">
+    <a href="{{url_for('mentor_nick_names')}}" class = "querry">Mentor Nicknames working at Miskolc</a>
+    </div>
+    <div class="myButton">
+    <a href="{{url_for('get_carol_full_name')}}" class = "querry">Carol Details</a>
+    </div>
+    <div class="myButton">
+    <a href="{{url_for('get_misterious_full_details')}}" class = "querry" >Mistery Details</a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('add_applicant') }}" class = "querry" >Add new applicant</a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('show_all_applicants') }}"  class = "querry" >Show all aplicants</a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('update_jamina') }}"class = "querry">Update Jemima</a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('delete_mariseu') }}" class = "querry">Delete @mariuseu.net </a>
+    </div>
+</div>
+{% endblock %}

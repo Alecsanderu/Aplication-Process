@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="mentors">
+        {% for details in details %}
+           <p> {{ details.full_name + " " + details.phone_number + " " + details.email }}
+               <a href = "mailto: {{details.email}}">Send Email</a></p><br/>
+        {% endfor%}
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="mentors">
+        {% for carol_details in details %}
+            <p>Carol Details : {{ carol_details.full_name + " " + carol_details.phone_number }}</p><br/>
+        {% endfor%}
+    </div>
+{% endblock %}

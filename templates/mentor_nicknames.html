@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table class="blueTable">
+<thead>
+<tr>
+<th>Nick Name</th>
+<th>City</th>
+</tr>
+</thead>
+    <tbody>
+        {% for mentor_nick in mentor_nick_names %}
+<tr>
+<td>{{mentor_nick.nick_name}}</td>
+<td>{{mentor_nick.city}}</td>
+</tr>
+</tbody>
+  {% endfor%}
+</table>
+
+
+    {% include 'footer.html' %}
+{% endblock %}

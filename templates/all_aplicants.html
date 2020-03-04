@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="aplicants">
+        {% for aplicants in details %}
+        <a href="{{url_for( 'show_info', id=aplicants.id )}}"> Open Profile </a>
+            ID:{{ aplicants.id }} Name: {{ aplicants.first_name + " " + aplicants.last_name }} {{aplicants.email}}<br/>
+
+        {% endfor%}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}
