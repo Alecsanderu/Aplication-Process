@@ -1,6 +1,7 @@
 import database_common
 from psycopg2 import sql
-import psycopg2
+
+
 
 @database_common.connection_handler
 def get_mentor_names_by_first_name(cursor, first_name):
@@ -94,9 +95,88 @@ def show_applicant(cursor, id):
     return names
 
 @database_common.connection_handler
-def delete_after_emai(cursor, part_email):
+def get_applicant_id(cursor,part_email):
+    cursor.execute(f"""
+                    SELECT id FROM applicants
+                    WHERE email LIKE '%{part_email}'
+                    """)
+    id = cursor.fetchall()
+    return id
+
+@database_common.connection_handler
+def delete_after_emai(cursor, part_email,applicant_ids):
+    applicant_id_str = ', '.join(applicant_ids)
+    cursor.execute(f""" 
+                        DELETE  FROM applicants_mentors
+                        WHERE applicant_id IN ({applicant_id_str})
+                        """)
     cursor.execute(f""" 
                     DELETE  FROM applicants
                     WHERE email LIKE '%{part_email}'
                     """)
     return f"Applicants with ' {part_email} ' email were deleted"
+
+@database_common.connection_handler
+def get_mentor_schools(cursor):
+    cursor.execute("""SELECT first_name, last_name, name, country
+                    FROM mentors
+                    INNER JOIN schools ON mentors.city = schools.city
+                    ORDER BY mentors.id ASC;
+                    """)
+    mentors = cursor.fetchall()
+    return mentors
+
+@database_common.connection_handler
+def get_all_schools(cursor):
+    cursor.execute("""
+                    SELECT COALESCE(first_name,'No Data') first_name, COALESCE(first_name,'No Data') last_name, name, country
+                    FROM mentors
+                    RIGHT JOIN schools ON mentors.city = schools.city
+                    ORDER BY mentors.id ASC;
+                    """)
+    schools = cursor.fetchall()
+    return schools
+
+
+@database_common.connection_handler
+def get_no_of_mentors(cursor):
+    cursor.execute("""
+                    SELECT country,
+                    COUNT(first_name)
+                    FROM mentors
+                    INNER JOIN schools ON mentors.city = schools.city
+                    GROUP BY country""")
+
+    details = cursor.fetchall()
+    return details
+
+@database_common.connection_handler
+def get_contact_name(cursor):
+    cursor.execute("""
+                    SELECT first_name, last_name, phone_number, name
+                    FROM mentors
+                    INNER JOIN schools ON mentors.id = schools.contact_person
+                    ORDER BY mentors.id ASC;""")
+    details = cursor.fetchall()
+    return details
+
+@database_common.connection_handler
+def get_applicants(cursor):
+    cursor.execute("""SELECT  applicants.first_name, applicants.application_code, applicants_mentors.creation_date
+                        FROM applicants
+                        JOIN applicants_mentors ON applicants.id = applicants_mentors.applicant_id
+                        WHERE creation_date > '2016-01-01'
+                        ORDER BY creation_date DESC;
+        """)
+    details = cursor.fetchall()
+    return details
+
+@database_common.connection_handler
+def get_applicants_and_mentors(cursor):
+    cursor.execute("""SELECT  applicants.first_name AS afn, applicants.application_code, mentors.first_name, mentors.last_name
+                    FROM applicants
+                    JOIN applicants_mentors ON applicants.id = applicants_mentors.applicant_id
+                    JOIN mentors ON mentors.id = applicants_mentors.mentor_id;
+                        """)
+    details = cursor.fetchall()
+    return details
