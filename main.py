@@ -58,9 +58,44 @@ def update_jamina():
     
 @app.route('/delete-applicants')
 def delete_mariseu():
-    details = data_manager.delete_after_emai('@mauriseu.net')
+    applicant_id = data_manager.get_applicant_id('@mauriseu.net')
+    applicant_id_list = []
+    for id in applicant_id:
+        applicant_id_list.append(str (id['id']))
+    details = data_manager.delete_after_emai('@mauriseu.net', applicant_id_list)
     return render_template('delete_mariseu.html', details=details)
 
+@app.route('/mentors')
+def show_mentor_school():
+    mentors = data_manager.get_mentor_schools()
+    return render_template('mentors_and_schools.html', mentors=mentors)
+
+@app.route('/all_school')
+def show_schools():
+    schools = data_manager.get_all_schools()
+    return render_template('all_schools.html', schools=schools)
+
+
+@app.route('/mentors_by_country')
+def mentors_by_country():
+    details = data_manager.get_no_of_mentors()
+    return render_template('mentors_by_country.html', details=details)
+
+@app.route('/contacts')
+def contact():
+    details = data_manager.get_contact_name()
+    return render_template('contact.html', details=details)
+
+@app.route('/applicants')
+def get_applicants():
+    details = data_manager.get_applicants()
+    return render_template('applicants.html', details=details)
+
+
+@app.route('/applicants_and_mentors')
+def get_them_all():
+    details = data_manager.get_applicants_and_mentors()
+    return render_template('mentors_and_applicants.html', details=details)
 
 if __name__ == '__main__':
     app.run(debug=True)
