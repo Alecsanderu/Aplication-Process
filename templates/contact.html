@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table class="blueTable">
+<thead>
+<tr>
+<th>School Name</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Phone Number</th>
+</tr>
+</thead>
+
+<tbody>
+{% for details in details %}
+<tr>
+<td>{{details.name}}</td>
+<td>{{details.first_name}}</td>
+<td>{{details.last_name}}</td>
+<td>{{details.phone_number}}</td>
+</tr>
+</tbody>
+  {% endfor%}
+</table>
+
+{% endblock %}

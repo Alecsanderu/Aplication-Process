@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table class="blueTable">
+<thead>
+<tr>
+<th>Country</th>
+<th>No. of Mentors</th>
+</tr>
+</thead>
+
+<tbody>
+{% for details in details %}
+<tr>
+<td>{{details.country}}</td>
+<td>{{details.count}}</td>
+</tr>
+</tbody>
+  {% endfor%}
+</table>
+
+{% endblock %}

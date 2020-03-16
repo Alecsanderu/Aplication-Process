@@ -26,5 +26,23 @@
     <div class="myButton">
     <a href="{{ url_for('delete_mariseu') }}" class = "querry">Delete @mariuseu.net </a>
     </div>
+     <div class="myButton">
+    <a href="{{ url_for('show_mentor_school') }}" class = "querry">Mentors and Schools </a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('show_schools') }}" class = "querry">All Schools </a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('mentors_by_country') }}" class = "querry">Mentors by Country </a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('contact') }}" class = "querry">Contacts </a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('get_applicants') }}" class = "querry">Applicants </a>
+    </div>
+    <div class="myButton">
+    <a href="{{ url_for('get_them_all') }}" class = "querry">Applicants and Mentors </a>
+    </div>
 </div>
 {% endblock %}

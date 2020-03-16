@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1> Applicants after 01-01-2016</h1>
+<table class="blueTable">
+<thead>
+<tr>
+<th>First Name</th>
+<th>Application Code</th>
+<th>Creation Date</th>
+
+</tr>
+</thead>
+
+<tbody>
+{% for details in details %}
+<tr>
+<td>{{details.first_name}}</td>
+<td>{{details.application_code}}</td>
+<td>{{details.creation_date}}</td>
+</tr>
+</tbody>
+  {% endfor%}
+</table>
+
+{% endblock %}

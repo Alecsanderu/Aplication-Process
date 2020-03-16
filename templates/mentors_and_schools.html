@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<table class="blueTable">
+<thead>
+<tr>
+<th>First Name</th>
+<th>Last Name</th>
+<th>School Name</th>
+<th>School Country</th>
+
+</tr>
+</thead>
+
+<tbody>
+{% for mentors in mentors %}
+<tr>
+<td>{{mentors.first_name}}</td>
+<td>{{mentors.last_name}}</td>
+<td>{{mentors.name}}</td>
+<td>{{mentors.country}}</td>
+</tr>
+</tbody>
+{% endfor %}
+</table>
+{% endblock %}

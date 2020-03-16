@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1> Applicants and Mentors</h1>
+<table class="blueTable">
+<thead>
+<tr>
+<th>Applicant First Name</th>
+<th>Application Code</th>
+<th>Mentor</th>
+
+</tr>
+</thead>
+
+<tbody>
+{% for details in details %}
+<tr>
+<td>{{details.afn}}</td>
+<td>{{details.application_code}}</td>
+<td>{{details.first_name}} {{details.last_name}}</td>
+</tr>
+</tbody>
+  {% endfor%}
+</table>
+
+{% endblock %}
