@@ -1,6 +1,12 @@
+![](static/img/Screenshot%20from%202020-03-16%2018-18-18.png)
+
 # Aplication-Process
 application-process-python
 Web and SQL with Python - Application process assignment - Basic SQL
+
+
+
+
 The HR department wants answers to the following questions:
 
 Write a query that returns the 2 name columns of the mentors table. columns: first_name, last_name
